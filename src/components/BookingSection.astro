@@ -1,0 +1,49 @@
+---
+const BOOKING_URL = "https://reservation.weloveportugal.com/vermietung/ferienwohnung-sagres-casa-cactus-in-strandnahe-und-gemeinschaftspool-389616.html?id=389616&bk=bk_vilalaia&Idioma=DE";
+
+const trustSignals = [
+  "Endreinigung inklusive",
+  "Bettwäsche und Handtücher gestellt",
+  "Seriöse Abwicklung vor Ort",
+];
+
+const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+
+const externalLinkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>`;
+---
+
+<section class="py-16 md:py-24 bg-background">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6">
+        Buchung und Verwaltung
+      </h2>
+      
+      <p class="text-muted-foreground text-lg mb-8 leading-relaxed">
+        Die Ferienwohnung Casa Cactus wird professionell von einer lokalen Agentur verwaltet. 
+        Buchung, Bezahlung, Schlüsselübergabe und Betreuung vor Ort erfolgen direkt über den 
+        offiziellen Anbieter.
+      </p>
+      
+      <!-- Trust signals -->
+      <div class="flex flex-wrap justify-center gap-4 mb-10">
+        {trustSignals.map((signal) => (
+          <div class="flex items-center gap-2 bg-muted px-4 py-2 rounded-full">
+            <span class="w-4 h-4 text-primary" set:html={checkIcon} />
+            <span class="text-sm text-foreground font-medium">{signal}</span>
+          </div>
+        ))}
+      </div>
+      
+      <a 
+        href={BOOKING_URL} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-primary-foreground bg-secondary hover:bg-secondary/90 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+      >
+        Zur offiziellen Buchungsseite
+        <span class="w-5 h-5" set:html={externalLinkIcon} />
+      </a>
+    </div>
+  </div>
+</section>

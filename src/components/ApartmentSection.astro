@@ -1,0 +1,62 @@
+---
+const features = [
+  { icon: "bed", text: "1 Schlafzimmer mit Doppelbett" },
+  { icon: "bath", text: "1 Badezimmer mit Badewanne" },
+  { icon: "utensils", text: "Offene Küche mit kompletter Ausstattung" },
+  { icon: "tv", text: "Wohnbereich mit Smart-TV und WLAN" },
+  { icon: "sun", text: "Private Terrasse mit Grill" },
+  { icon: "waves", text: "Direkter Zugang zum Gemeinschaftspool" },
+  { icon: "wind", text: "Klimaanlage in allen Räumen" },
+  { icon: "car", text: "Parkplatz in unmittelbarer Nähe" },
+];
+
+// Simple SVG icons
+const icons: Record<string, string> = {
+  bed: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>`,
+  bath: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>`,
+  utensils: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>`,
+  tv: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="15" x="2" y="7" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
+  sun: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`,
+  waves: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`,
+  wind: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
+  car: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>`,
+};
+---
+
+<section class="py-16 md:py-24 bg-background">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-6">
+      Die Ferienwohnung Casa Cactus im Überblick
+    </h2>
+    
+    <p class="text-muted-foreground text-lg text-center max-w-3xl mx-auto mb-12">
+      Die ebenerdige Ferienwohnung bietet rund 58 m² Wohnfläche und ist Teil einer kleinen, 
+      gepflegten Wohnanlage mit insgesamt wenigen Einheiten. Die Anlage ist ruhig, nicht 
+      touristisch überlaufen und ideal für Gäste, die Sagres entspannt erleben möchten.
+    </p>
+    
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <!-- Image -->
+      <div class="relative rounded-xl overflow-hidden shadow-xl">
+        <img 
+          src="/apartment-interior.jpeg" 
+          alt="Innenansicht der Ferienwohnung Casa Cactus in Sagres" 
+          class="w-full h-auto aspect-video object-cover"
+          loading="lazy"
+        />
+      </div>
+      
+      <!-- Features Grid -->
+      <div class="grid sm:grid-cols-2 gap-4">
+        {features.map((feature) => (
+          <div class="flex items-center gap-4 p-4 bg-card rounded-lg border border-border hover:border-primary/30 hover:shadow-md transition-all duration-300">
+            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <span class="w-6 h-6 text-primary" set:html={icons[feature.icon]} />
+            </div>
+            <span class="text-foreground font-medium">{feature.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+---
+const suitableFor = [
+  "Paare",
+  "Alleinreisende",
+  "Ruhesuchende",
+  "Surfer und Outdoor-Aktive",
+  "Langzeitgäste außerhalb der Hauptsaison",
+];
+
+const notSuitableFor = [
+  "Gruppen",
+  "Partys",
+  "Haustiere",
+];
+
+const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+
+const xIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
+---
+
+<section class="py-16 md:py-24 bg-muted">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+      Für wen ist Casa Cactus geeignet
+    </h2>
+    
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- Suitable for -->
+      <div class="bg-card rounded-xl p-6 border border-border shadow-sm">
+        <h3 class="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+          <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+            <span class="w-5 h-5 text-primary" set:html={checkIcon} />
+          </div>
+          Geeignet für
+        </h3>
+        <ul class="space-y-3">
+          {suitableFor.map((item) => (
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 text-primary flex-shrink-0" set:html={checkIcon} />
+              <span class="text-muted-foreground">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Not suitable for -->
+      <div class="bg-card rounded-xl p-6 border border-border shadow-sm">
+        <h3 class="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+          <div class="w-8 h-8 bg-destructive/10 rounded-full flex items-center justify-center">
+            <span class="w-5 h-5 text-destructive" set:html={xIcon} />
+          </div>
+          Nicht geeignet für
+        </h3>
+        <ul class="space-y-3">
+          {notSuitableFor.map((item) => (
+            <li class="flex items-center gap-3">
+              <span class="w-5 h-5 text-destructive flex-shrink-0" set:html={xIcon} />
+              <span class="text-muted-foreground">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

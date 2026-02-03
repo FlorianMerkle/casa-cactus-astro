@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Casa Cactus Sagres" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Casa Cactus - Ferienwohnung Sagres",
+      "description": "Moderne Ferienwohnung für 2 Personen in Sagres mit Terrasse, Gemeinschaftspool und Strandnähe.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sagres",
+        "addressRegion": "Algarve",
+        "addressCountry": "PT"
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Gemeinschaftspool" },
+        { "@type": "LocationFeatureSpecification", "name": "WLAN" },
+        { "@type": "LocationFeatureSpecification", "name": "Klimaanlage" },
+        { "@type": "LocationFeatureSpecification", "name": "Terrasse" },
+        { "@type": "LocationFeatureSpecification", "name": "Parkplatz" }
+      ]
+    }
+    </script>
+
+    <!-- Plausible Analytics (uncomment when you have your domain) -->
+    <!-- <script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script> -->
+
+    <style>
+      @import '../styles/global.css';
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

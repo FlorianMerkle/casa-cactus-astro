@@ -1,0 +1,74 @@
+---
+const highlights = [
+  { icon: "waves", text: "fußläufig oder mit kurzem Weg an den Strand möchten" },
+  { icon: "mountain", text: "eine ruhige Unterkunft statt eines Hotels suchen" },
+  { icon: "mappin", text: "Sagres als Ausgangspunkt für die Costa Vicentina nutzen" },
+];
+
+const icons: Record<string, string> = {
+  waves: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`,
+  mountain: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>`,
+  mappin: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>`,
+};
+
+const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3200!2d-8.93731!3d37.01486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDAwJzUzLjUiTiA4wrA1NicxNC4zIlc!5e0!3m2!1sde!2spt!4v1700000000000!5m2!1sde!2spt";
+---
+
+<section id="lage" class="py-16 md:py-24 bg-muted">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+      <!-- Content -->
+      <div class="order-2 lg:order-1">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6">
+          Lage – Ferienwohnung in Sagres in Strandnähe
+        </h2>
+        
+        <p class="text-muted-foreground text-lg mb-8 leading-relaxed">
+          Casa Cactus liegt in Sagres, einem der bekanntesten Orte an der Westalgarve. 
+          Strände, Restaurants und Einkaufsmöglichkeiten sind gut erreichbar. Die Umgebung 
+          ist bekannt für Surfen, Wandern entlang der Steilküste und eine insgesamt ruhige Atmosphäre.
+        </p>
+        
+        <p class="text-foreground font-medium mb-4">
+          Die Ferienwohnung eignet sich besonders für Gäste, die:
+        </p>
+        
+        <ul class="space-y-4">
+          {highlights.map((item) => (
+            <li class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-8 h-8 bg-ocean/10 rounded-full flex items-center justify-center mt-0.5">
+                <span class="w-4 h-4 text-ocean" set:html={icons[item.icon]} />
+              </div>
+              <span class="text-muted-foreground">{item.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Image -->
+      <div class="order-1 lg:order-2 relative rounded-xl overflow-hidden shadow-xl">
+        <img 
+          src="/sagres-coastline.jpeg" 
+          alt="Steilküste und Strand bei Sagres an der Algarve" 
+          class="w-full h-auto aspect-[4/5] object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Google Maps -->
+    <div class="rounded-xl overflow-hidden shadow-xl">
+      <iframe
+        src={mapEmbedUrl}
+        width="100%"
+        height="400"
+        style="border: 0"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Standort Casa Cactus in Sagres, Portugal"
+        class="w-full"
+      ></iframe>
+    </div>
+  </div>
+</section>

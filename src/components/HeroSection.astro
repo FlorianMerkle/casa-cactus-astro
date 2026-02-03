@@ -1,0 +1,42 @@
+---
+const BOOKING_URL = "https://reservation.weloveportugal.com/vermietung/ferienwohnung-sagres-casa-cactus-in-strandnahe-und-gemeinschaftspool-389616.html?id=389616&bk=bk_vilalaia&Idioma=DE";
+---
+
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+  <!-- Background Image -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/sagres-sunset-beach.jpeg')"
+  >
+    <div class="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-foreground/60"></div>
+  </div>
+  
+  <!-- Content -->
+  <div class="relative z-10 container mx-auto px-4 text-center">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight drop-shadow-lg">
+      Ferienwohnung in Sagres – Casa Cactus nahe Strand und Pool
+    </h1>
+    
+    <p class="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto mb-8 leading-relaxed drop-shadow-md">
+      Casa Cactus ist eine ruhig gelegene Ferienwohnung in Sagres, ideal für zwei Personen. 
+      Die Wohnung liegt in Strandnähe, verfügt über eine private Terrasse mit direktem Zugang 
+      zum Gemeinschaftspool und eignet sich perfekt für einen entspannten Aufenthalt an der Algarve.
+    </p>
+    
+    <a 
+      href={BOOKING_URL} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+    >
+      Verfügbarkeit & Preise prüfen
+    </a>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <div class="w-6 h-10 border-2 border-primary-foreground/60 rounded-full flex items-start justify-center p-1">
+      <div class="w-1.5 h-3 bg-primary-foreground/60 rounded-full"></div>
+    </div>
+  </div>
+</section>

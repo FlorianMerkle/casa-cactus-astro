@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Design tokens from Casa Cactus original project */
+@theme {
+  /* Border radius */
+  --radius: 0.75rem;
+  --radius-lg: 0.75rem;
+  --radius-md: calc(0.75rem - 2px);
+  --radius-sm: calc(0.75rem - 4px);
+
+  /* Colors - Light mode defaults */
+  --color-background: hsl(35 30% 98%);
+  --color-foreground: hsl(25 30% 15%);
+  
+  --color-card: hsl(35 25% 97%);
+  --color-card-foreground: hsl(25 30% 15%);
+  
+  --color-primary: hsl(25 85% 55%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  
+  --color-secondary: hsl(200 60% 45%);
+  --color-secondary-foreground: hsl(0 0% 100%);
+  
+  --color-muted: hsl(35 20% 92%);
+  --color-muted-foreground: hsl(25 15% 45%);
+  
+  --color-accent: hsl(35 40% 90%);
+  --color-accent-foreground: hsl(25 30% 20%);
+  
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  
+  --color-border: hsl(35 20% 88%);
+  --color-input: hsl(35 20% 88%);
+  --color-ring: hsl(25 85% 55%);
+
+  /* Custom Casa Cactus palette */
+  --color-sunset-orange: hsl(25 85% 55%);
+  --color-sunset-gold: hsl(40 90% 60%);
+  --color-ocean: hsl(200 60% 45%);
+  --color-ocean-deep: hsl(205 70% 35%);
+  --color-sand: hsl(35 40% 85%);
+  --color-sand-light: hsl(35 30% 95%);
+  --color-cliff-brown: hsl(25 40% 35%);
+  
+  /* Container */
+  --container-2xl: 1400px;
+}
+
+/* Base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom utility for container */
+@layer utilities {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 100%;
+  }
+  
+  @media (min-width: 1400px) {
+    .container {
+      max-width: var(--container-2xl);
+    }
+  }
+}

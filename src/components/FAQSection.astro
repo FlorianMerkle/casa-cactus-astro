@@ -1,0 +1,80 @@
+---
+const faqs = [
+  {
+    question: "Wie weit ist der Strand entfernt?",
+    answer: "Die nächstgelegenen Strände in Sagres sind in kurzer Zeit erreichbar.",
+  },
+  {
+    question: "Gibt es WLAN?",
+    answer: "Ja, die Ferienwohnung verfügt über WLAN.",
+  },
+  {
+    question: "Ist der Pool privat?",
+    answer: "Es handelt sich um einen Gemeinschaftspool der Wohnanlage.",
+  },
+  {
+    question: "Gibt es Parkmöglichkeiten?",
+    answer: "Ja, Parken ist in der Nähe der Unterkunft möglich.",
+  },
+];
+---
+
+<section class="py-16 md:py-24 bg-muted">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+      Häufige Fragen zur Ferienwohnung in Sagres
+    </h2>
+    
+    <div class="max-w-3xl mx-auto space-y-4">
+      {faqs.map((faq, index) => (
+        <details 
+          class="group bg-card border border-border rounded-lg px-6 transition-shadow data-[open]:shadow-md"
+        >
+          <summary class="flex items-center justify-between cursor-pointer py-5 text-left text-foreground font-semibold list-none">
+            {faq.question}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+              class="flex-shrink-0 ml-4 transition-transform duration-200 group-open:rotate-180"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="text-muted-foreground pb-5">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Remove default marker */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Smooth expand animation */
+  details[open] > div {
+    animation: slideDown 0.2s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

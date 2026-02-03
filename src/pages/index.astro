@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ApartmentSection from '../components/ApartmentSection.astro';
+import LocationSection from '../components/LocationSection.astro';
+import PoolSection from '../components/PoolSection.astro';
+import TargetAudienceSection from '../components/TargetAudienceSection.astro';
+import BookingSection from '../components/BookingSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import FooterCTA from '../components/FooterCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Ferienwohnung in Sagres mit Pool und Strandnähe | Casa Cactus";
+const description = "Moderne Ferienwohnung für 2 Personen in Sagres. Terrasse, Gemeinschaftspool, strandnah, ruhig gelegen. Jetzt Verfügbarkeit prüfen.";
+---
+
+<BaseLayout title={title} description={description}>
+  <main>
+    <HeroSection />
+    <ApartmentSection />
+    <LocationSection />
+    <PoolSection />
+    <TargetAudienceSection />
+    <BookingSection />
+    <FAQSection />
+    <FooterCTA />
+    <Footer />
+  </main>
+</BaseLayout>

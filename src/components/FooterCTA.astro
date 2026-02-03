@@ -1,0 +1,34 @@
+---
+const BOOKING_URL = "https://reservation.weloveportugal.com/vermietung/ferienwohnung-sagres-casa-cactus-in-strandnahe-und-gemeinschaftspool-389616.html?id=389616&bk=bk_vilalaia&Idioma=DE";
+---
+
+<section class="relative py-20 md:py-28 overflow-hidden">
+  <!-- Background Image -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/sagres-sunset-view.jpeg')"
+  >
+    <div class="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/60 to-foreground/40"></div>
+  </div>
+  
+  <!-- Content -->
+  <div class="relative z-10 container mx-auto px-4 text-center">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
+      Jetzt Ferienwohnung in Sagres buchen
+    </h2>
+    
+    <p class="text-primary-foreground/90 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+      Wenn Sie eine ruhige, gut ausgestattete Ferienwohnung in Sagres suchen, ist Casa Cactus 
+      eine passende Wahl. Prüfen Sie jetzt Verfügbarkeit und Preise über die offizielle Buchungsseite.
+    </p>
+    
+    <a 
+      href={BOOKING_URL} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-foreground bg-primary hover:bg-primary/90 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+    >
+      Jetzt buchen
+    </a>
+  </div>
+</section>
