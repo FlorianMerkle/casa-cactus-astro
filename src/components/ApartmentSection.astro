@@ -1,4 +1,11 @@
 ---
+import { Picture } from "astro:assets";
+import interiorImage from "../assets/apartment-interior.jpeg";
+import livingRoomImage from "../assets/apartment-living-room.jpg";
+import kitchenImage from "../assets/apartment-kitchen.jpg";
+import poolTerraceImage from "../assets/apartment-pool-terrace.jpg";
+import bedroomImage from "../assets/schlafzimmer.jpg";
+
 const features = [
   { icon: "bed", text: "1 Schlafzimmer mit Doppelbett" },
   { icon: "bath", text: "1 Badezimmer mit Badewanne" },
@@ -8,6 +15,14 @@ const features = [
   { icon: "waves", text: "Direkter Zugang zum Gemeinschaftspool" },
   { icon: "wind", text: "Klimaanlage in allen Räumen" },
   { icon: "car", text: "Parkplatz in unmittelbarer Nähe" },
+];
+
+const slides = [
+  { src: interiorImage, alt: "Schlafzimmer der Ferienwohnung Casa Cactus in Sagres" },
+  { src: bedroomImage, alt: "Schlafzimmer mit Doppelbett in der Ferienwohnung Casa Cactus" },
+  { src: livingRoomImage, alt: "Wohnzimmer mit Zugang zur Terrasse" },
+  { src: kitchenImage, alt: "Voll ausgestattete Küche" },
+  { src: poolTerraceImage, alt: "Terrasse mit Blick auf den Gemeinschaftspool" },
 ];
 
 // Simple SVG icons
@@ -36,14 +51,74 @@ const icons: Record<string, string> = {
     </p>
     
     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      <!-- Image -->
-      <div class="relative rounded-xl overflow-hidden shadow-xl">
-        <img 
-          src="/apartment-interior.jpeg" 
-          alt="Innenansicht der Ferienwohnung Casa Cactus in Sagres" 
-          class="w-full h-auto aspect-video object-cover"
-          loading="lazy"
-        />
+      <!-- Image Slider -->
+      <div class="relative rounded-xl overflow-hidden shadow-xl group" data-carousel-root>
+        <div class="relative w-full aspect-video">
+          {slides.map((slide, index) => (
+            <Picture
+              src={slide.src}
+              alt={slide.alt}
+              formats={["avif", "webp"]}
+              widths={[480, 768, 1024, 1400]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              pictureAttributes={{ class: "absolute inset-0 block w-full h-full" }}
+              class={`w-full h-full object-cover transition-opacity duration-500 ${index === 0 ? "opacity-100" : "opacity-0"}`}
+              loading={index === 0 ? "eager" : "lazy"}
+              data-carousel-slide
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background"
+          aria-label="Vorheriges Bild"
+          data-carousel-prev
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5 text-foreground"
+          >
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background"
+          aria-label="Nächstes Bild"
+          data-carousel-next
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-5 h-5 text-foreground"
+          >
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+          {slides.map((_, index) => (
+            <button
+              type="button"
+              class={`h-2.5 rounded-full transition-all duration-300 ${index === 0 ? "bg-primary-foreground w-6" : "bg-primary-foreground/50 w-2.5 hover:bg-primary-foreground/80"}`}
+              aria-label={`Bild ${index + 1} anzeigen`}
+              data-carousel-dot-index={index}
+            />
+          ))}
+        </div>
       </div>
       
       <!-- Features Grid -->
@@ -60,3 +135,58 @@ const icons: Record<string, string> = {
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll("[data-carousel-root]").forEach((root) => {
+    const slides = Array.from(root.querySelectorAll("[data-carousel-slide]"));
+    const dots = Array.from(root.querySelectorAll("[data-carousel-dot-index]"));
+    const prevButton = root.querySelector("[data-carousel-prev]");
+    const nextButton = root.querySelector("[data-carousel-next]");
+
+    if (slides.length === 0) {
+      return;
+    }
+
+    const lastIndex = slides.length - 1;
+    let currentIndex = 0;
+
+    const setIndex = (nextIndex) => {
+      if (nextIndex < 0) {
+        currentIndex = lastIndex;
+      } else if (nextIndex > lastIndex) {
+        currentIndex = 0;
+      } else {
+        currentIndex = nextIndex;
+      }
+
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("opacity-100", slideIndex === currentIndex);
+        slide.classList.toggle("opacity-0", slideIndex !== currentIndex);
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === currentIndex;
+        dot.classList.toggle("bg-primary-foreground", isActive);
+        dot.classList.toggle("w-6", isActive);
+        dot.classList.toggle("bg-primary-foreground/50", !isActive);
+        dot.classList.toggle("w-2.5", !isActive);
+        dot.classList.toggle("hover:bg-primary-foreground/80", !isActive);
+        dot.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+    };
+
+    prevButton?.addEventListener("click", () => setIndex(currentIndex - 1));
+    nextButton?.addEventListener("click", () => setIndex(currentIndex + 1));
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const index = Number(dot.getAttribute("data-carousel-dot-index"));
+        if (!Number.isNaN(index)) {
+          setIndex(index);
+        }
+      });
+    });
+
+    setIndex(0);
+  });
+</script>

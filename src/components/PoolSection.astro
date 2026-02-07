@@ -1,4 +1,6 @@
 ---
+import { Picture } from "astro:assets";
+import droneImage from "../assets/drone-overview.jpg";
 ---
 
 <section class="py-16 md:py-24 bg-background">
@@ -6,9 +8,12 @@
     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
       <!-- Image -->
       <div class="relative rounded-xl overflow-hidden shadow-xl">
-        <img 
-          src="/sagres-landscape.jpeg" 
-          alt="Blick von der Terrasse über die Umgebung in Sagres" 
+        <Picture
+          src={droneImage}
+          alt="Luftaufnahme der Wohnanlage Casa Cactus in Sagres mit Pool und Gemeinschaftsanlage" 
+          formats={["avif", "webp"]}
+          widths={[480, 768, 1024, 1400]}
+          sizes="(min-width: 1024px) 50vw, 100vw"
           class="w-full h-auto aspect-square object-cover"
           loading="lazy"
         />

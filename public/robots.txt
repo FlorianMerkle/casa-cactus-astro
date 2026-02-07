@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://casa-cactus-sagres.com/sitemap-index.xml

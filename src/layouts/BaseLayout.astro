@@ -6,6 +6,31 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteURL = new URL("/", Astro.site);
+const ogImageURL = new URL("/og-image.jpg", Astro.site);
+const instagramURL = "https://www.instagram.com/casa.cactus.sagres";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  name: "Casa Cactus - Ferienwohnung Sagres",
+  description: "Moderne Ferienwohnung für 2 Personen in Sagres mit Terrasse, Gemeinschaftspool und Strandnähe.",
+  url: siteURL.toString(),
+  image: ogImageURL.toString(),
+  sameAs: [instagramURL],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Sagres",
+    addressRegion: "Algarve",
+    addressCountry: "PT",
+  },
+  amenityFeature: [
+    { "@type": "LocationFeatureSpecification", name: "Gemeinschaftspool" },
+    { "@type": "LocationFeatureSpecification", name: "WLAN" },
+    { "@type": "LocationFeatureSpecification", name: "Klimaanlage" },
+    { "@type": "LocationFeatureSpecification", name: "Terrasse" },
+    { "@type": "LocationFeatureSpecification", name: "Parkplatz" },
+  ],
+};
 ---
 
 <!doctype html>
@@ -26,36 +51,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content={ogImageURL} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
-      "name": "Casa Cactus - Ferienwohnung Sagres",
-      "description": "Moderne Ferienwohnung für 2 Personen in Sagres mit Terrasse, Gemeinschaftspool und Strandnähe.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sagres",
-        "addressRegion": "Algarve",
-        "addressCountry": "PT"
-      },
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Gemeinschaftspool" },
-        { "@type": "LocationFeatureSpecification", "name": "WLAN" },
-        { "@type": "LocationFeatureSpecification", "name": "Klimaanlage" },
-        { "@type": "LocationFeatureSpecification", "name": "Terrasse" },
-        { "@type": "LocationFeatureSpecification", "name": "Parkplatz" }
-      ]
-    }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Plausible Analytics (uncomment when you have your domain) -->
     <!-- <script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script> -->

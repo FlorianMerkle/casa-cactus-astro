@@ -1,6 +1,9 @@
 ---
+import { Picture } from "astro:assets";
+import coastlineImage from "../assets/sagres-coastline.jpeg";
+
 const highlights = [
-  { icon: "waves", text: "fußläufig oder mit kurzem Weg an den Strand möchten" },
+  { icon: "waves", text: "drei Strände im Umkreis von 600 bis 1.000 Metern erreichen möchten" },
   { icon: "mountain", text: "eine ruhige Unterkunft statt eines Hotels suchen" },
   { icon: "mappin", text: "Sagres als Ausgangspunkt für die Costa Vicentina nutzen" },
 ];
@@ -47,9 +50,12 @@ const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3200!
       
       <!-- Image -->
       <div class="order-1 lg:order-2 relative rounded-xl overflow-hidden shadow-xl">
-        <img 
-          src="/sagres-coastline.jpeg" 
+        <Picture
+          src={coastlineImage}
           alt="Steilküste und Strand bei Sagres an der Algarve" 
+          formats={["avif", "webp"]}
+          widths={[480, 768, 1024, 1400]}
+          sizes="(min-width: 1024px) 50vw, 100vw"
           class="w-full h-auto aspect-[4/5] object-cover"
           loading="lazy"
         />
