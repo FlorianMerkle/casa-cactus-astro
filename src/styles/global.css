@@ -18,11 +18,11 @@
   --color-primary: hsl(25 85% 55%);
   --color-primary-foreground: hsl(0 0% 100%);
   
-  --color-secondary: hsl(200 60% 45%);
+  --color-secondary: hsl(200 60% 40%);
   --color-secondary-foreground: hsl(0 0% 100%);
   
   --color-muted: hsl(35 20% 92%);
-  --color-muted-foreground: hsl(25 15% 45%);
+  --color-muted-foreground: hsl(25 15% 38%);
   
   --color-accent: hsl(35 40% 90%);
   --color-accent-foreground: hsl(25 30% 20%);

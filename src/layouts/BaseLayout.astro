@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 interface Props {
   title: string;
   description: string;
@@ -48,6 +50,9 @@ const cloudflareBeacon = cloudflareToken ? JSON.stringify({ token: cloudflareTok
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -81,10 +86,6 @@ const cloudflareBeacon = cloudflareToken ? JSON.stringify({ token: cloudflareTok
         data-cf-beacon={cloudflareBeacon}
       ></script>
     )}
-
-    <style>
-      @import '../styles/global.css';
-    </style>
   </head>
   <body>
     <slot />

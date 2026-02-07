@@ -12,8 +12,9 @@ import droneImage from "../assets/drone-overview.jpg";
           src={droneImage}
           alt="Luftaufnahme der Wohnanlage Casa Cactus in Sagres mit Pool und Gemeinschaftsanlage" 
           formats={["avif", "webp"]}
-          widths={[480, 768, 1024, 1400]}
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          widths={[480, 640, 768, 960, 1280]}
+          sizes="(min-width: 1400px) 628px, (min-width: 1024px) calc((100vw - 9rem) / 2), calc(100vw - 6rem)"
+          quality={50}
           class="w-full h-auto aspect-square object-cover"
           loading="lazy"
         />

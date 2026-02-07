@@ -15,6 +15,7 @@ const icons: Record<string, string> = {
 };
 
 const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3200!2d-8.93731!3d37.01486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDAwJzUzLjUiTiA4wrA1NicxNC4zIlc!5e0!3m2!1sde!2spt!4v1700000000000!5m2!1sde!2spt";
+const googleMapsUrl = "https://www.google.com/maps?q=37.01486,-8.93731";
 ---
 
 <section id="lage" class="py-16 md:py-24 bg-muted">
@@ -54,8 +55,9 @@ const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3200!
           src={coastlineImage}
           alt="Steilküste und Strand bei Sagres an der Algarve" 
           formats={["avif", "webp"]}
-          widths={[480, 768, 1024, 1400]}
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          widths={[480, 640, 768, 960, 1280]}
+          sizes="(min-width: 1400px) 628px, (min-width: 1024px) calc((100vw - 9rem) / 2), calc(100vw - 6rem)"
+          quality={55}
           class="w-full h-auto aspect-[4/5] object-cover"
           loading="lazy"
         />
@@ -64,17 +66,90 @@ const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3200!
 
     <!-- Google Maps -->
     <div class="rounded-xl overflow-hidden shadow-xl">
-      <iframe
-        src={mapEmbedUrl}
-        width="100%"
-        height="400"
-        style="border: 0"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Standort Casa Cactus in Sagres, Portugal"
-        class="w-full"
-      ></iframe>
+      <div
+        data-map-wrapper
+        data-map-src={mapEmbedUrl}
+        class="relative min-h-[400px] bg-sand-light"
+      >
+        <div class="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <p class="text-foreground font-semibold mb-3">
+            Interaktive Karte wird geladen, sobald der Bereich sichtbar ist.
+          </p>
+          <p class="text-muted-foreground max-w-lg text-sm">
+            Beim Laden der Karte werden Daten an Google Maps übertragen.
+          </p>
+          <a
+            href={googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 text-ocean-deep font-medium underline underline-offset-4 hover:text-ocean transition-colors"
+          >
+            Standort direkt in Google Maps öffnen
+          </a>
+        </div>
+      </div>
+      <noscript>
+        <iframe
+          src={mapEmbedUrl}
+          width="100%"
+          height="400"
+          style="border: 0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Standort Casa Cactus in Sagres, Portugal"
+          class="w-full"
+        ></iframe>
+      </noscript>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  const mapWrappers = document.querySelectorAll("[data-map-wrapper]");
+
+  const loadMap = (wrapper) => {
+    if (wrapper.dataset.mapLoaded === "true") {
+      return;
+    }
+
+    const src = wrapper.dataset.mapSrc;
+    if (!src) {
+      return;
+    }
+
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.width = "100%";
+    iframe.height = "400";
+    iframe.style.border = "0";
+    iframe.allowFullscreen = true;
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.title = "Standort Casa Cactus in Sagres, Portugal";
+    iframe.className = "w-full";
+
+    wrapper.replaceChildren(iframe);
+    wrapper.dataset.mapLoaded = "true";
+  };
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          loadMap(entry.target);
+          currentObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "200px 0px" }
+    );
+
+    mapWrappers.forEach((wrapper) => observer.observe(wrapper));
+  } else {
+    mapWrappers.forEach((wrapper) => loadMap(wrapper));
+  }
+</script>

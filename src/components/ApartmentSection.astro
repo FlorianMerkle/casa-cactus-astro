@@ -59,8 +59,9 @@ const icons: Record<string, string> = {
               src={slide.src}
               alt={slide.alt}
               formats={["avif", "webp"]}
-              widths={[480, 768, 1024, 1400]}
-              sizes="(min-width: 1024px) 50vw, 100vw"
+              widths={[480, 640, 768, 960, 1280]}
+              sizes="(min-width: 1400px) 628px, (min-width: 1024px) calc((100vw - 9rem) / 2), calc(100vw - 6rem)"
+              quality={55}
               pictureAttributes={{ class: "absolute inset-0 block w-full h-full" }}
               class={`w-full h-full object-cover transition-opacity duration-500 ${index === 0 ? "opacity-100" : "opacity-0"}`}
               loading={index === 0 ? "eager" : "lazy"}
@@ -113,10 +114,15 @@ const icons: Record<string, string> = {
           {slides.map((_, index) => (
             <button
               type="button"
-              class={`h-2.5 rounded-full transition-all duration-300 ${index === 0 ? "bg-primary-foreground w-6" : "bg-primary-foreground/50 w-2.5 hover:bg-primary-foreground/80"}`}
+              class="group h-8 w-8 rounded-full flex items-center justify-center"
               aria-label={`Bild ${index + 1} anzeigen`}
               data-carousel-dot-index={index}
-            />
+            >
+              <span
+                data-carousel-dot-indicator
+                class={`pointer-events-none h-2.5 rounded-full transition-all duration-300 ${index === 0 ? "bg-primary-foreground w-6" : "bg-primary-foreground/50 w-2.5 group-hover:bg-primary-foreground/80"}`}
+              ></span>
+            </button>
           ))}
         </div>
       </div>
@@ -166,11 +172,16 @@ const icons: Record<string, string> = {
 
       dots.forEach((dot, dotIndex) => {
         const isActive = dotIndex === currentIndex;
-        dot.classList.toggle("bg-primary-foreground", isActive);
-        dot.classList.toggle("w-6", isActive);
-        dot.classList.toggle("bg-primary-foreground/50", !isActive);
-        dot.classList.toggle("w-2.5", !isActive);
-        dot.classList.toggle("hover:bg-primary-foreground/80", !isActive);
+        const indicator = dot.querySelector("[data-carousel-dot-indicator]");
+        if (!indicator) {
+          return;
+        }
+
+        indicator.classList.toggle("bg-primary-foreground", isActive);
+        indicator.classList.toggle("w-6", isActive);
+        indicator.classList.toggle("bg-primary-foreground/50", !isActive);
+        indicator.classList.toggle("w-2.5", !isActive);
+        indicator.classList.toggle("group-hover:bg-primary-foreground/80", !isActive);
         dot.setAttribute("aria-current", isActive ? "true" : "false");
       });
     };
