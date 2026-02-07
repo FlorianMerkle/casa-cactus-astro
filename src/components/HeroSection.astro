@@ -1,13 +1,25 @@
 ---
+import { Picture } from "astro:assets";
+import heroImage from "../assets/sagres-sunset-beach.jpeg";
+
 const BOOKING_URL = "https://reservation.weloveportugal.com/vermietung/ferienwohnung-sagres-casa-cactus-in-strandnahe-und-gemeinschaftspool-389616.html?id=389616&bk=bk_vilalaia&Idioma=DE";
 ---
 
 <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
   <!-- Background Image -->
-  <div 
-    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style="background-image: url('/sagres-sunset-beach.jpeg')"
-  >
+  <div class="absolute inset-0">
+    <Picture
+      src={heroImage}
+      alt=""
+      formats={["avif", "webp"]}
+      widths={[640, 960, 1280, 1600, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      quality={65}
+      class="w-full h-full object-cover"
+      pictureAttributes={{ class: "absolute inset-0 block w-full h-full" }}
+    />
     <div class="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-foreground/60"></div>
   </div>
   

@@ -1,13 +1,24 @@
 ---
+import { Picture } from "astro:assets";
+import ctaImage from "../assets/sagres-sunset-view.jpeg";
+
 const BOOKING_URL = "https://reservation.weloveportugal.com/vermietung/ferienwohnung-sagres-casa-cactus-in-strandnahe-und-gemeinschaftspool-389616.html?id=389616&bk=bk_vilalaia&Idioma=DE";
 ---
 
 <section class="relative py-20 md:py-28 overflow-hidden">
   <!-- Background Image -->
-  <div 
-    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style="background-image: url('/sagres-sunset-view.jpeg')"
-  >
+  <div class="absolute inset-0">
+    <Picture
+      src={ctaImage}
+      alt=""
+      formats={["avif", "webp"]}
+      widths={[640, 960, 1280, 1600]}
+      sizes="100vw"
+      loading="lazy"
+      quality={65}
+      class="w-full h-full object-cover"
+      pictureAttributes={{ class: "absolute inset-0 block w-full h-full" }}
+    />
     <div class="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/60 to-foreground/40"></div>
   </div>
   
