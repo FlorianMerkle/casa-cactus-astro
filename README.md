@@ -38,6 +38,21 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Analytics Setup
+
+This project supports both Umami and Cloudflare Web Analytics.
+
+1. Copy `.env.example` to `.env`.
+2. Set `PUBLIC_UMAMI_WEBSITE_ID` (from your Umami project).
+3. Optionally adjust `PUBLIC_UMAMI_SCRIPT_URL` (default is Umami Cloud).
+4. Set `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` (from Cloudflare Web Analytics).
+
+Tracked CTA events in Umami:
+- `booking_cta_click` with `location=hero`
+- `booking_cta_click` with `location=booking_section`
+- `booking_cta_click` with `location=footer_cta`
+- `instagram_click` with `location=footer`
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

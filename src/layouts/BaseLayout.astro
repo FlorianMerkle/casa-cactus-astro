@@ -31,6 +31,10 @@ const structuredData = {
     { "@type": "LocationFeatureSpecification", name: "Parkplatz" },
   ],
 };
+const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL ?? "https://cloud.umami.is/script.js";
+const cloudflareToken = import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN;
+const cloudflareBeacon = cloudflareToken ? JSON.stringify({ token: cloudflareToken }) : null;
 ---
 
 <!doctype html>
@@ -62,8 +66,21 @@ const structuredData = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
-    <!-- Plausible Analytics (uncomment when you have your domain) -->
-    <!-- <script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script> -->
+    {umamiWebsiteId && (
+      <script
+        defer
+        src={umamiScriptUrl}
+        data-website-id={umamiWebsiteId}
+      ></script>
+    )}
+
+    {cloudflareBeacon && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={cloudflareBeacon}
+      ></script>
+    )}
 
     <style>
       @import '../styles/global.css';
