@@ -1,16 +1,13 @@
 ---
 const suitableFor = [
-  "Paare",
-  "Alleinreisende",
-  "Ruhesuchende",
-  "Surfer und Outdoor-Aktive",
-  "Langzeitgäste außerhalb der Hauptsaison",
+  "Gäste, die gerne zu Fuß unterwegs sind",
+  "Gäste, die die Nähe zum Meer schätzen",
+  "Gäste, die ihren Urlaub unabhängig gestalten möchten",
 ];
 
 const notSuitableFor = [
-  "Gruppen",
-  "Partys",
-  "Haustiere",
+  "Größere Gruppen",
+  "Gäste, die eine sehr lebhafte Ferienanlage suchen",
 ];
 
 const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
@@ -21,8 +18,13 @@ const xIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 <section class="py-16 md:py-24 bg-muted">
   <div class="container mx-auto px-4">
     <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
-      Für wen ist Casa Cactus geeignet
+      Für wen ist Casa Cactus ideal?
     </h2>
+
+    <p class="text-muted-foreground text-lg text-center max-w-3xl mx-auto mb-10 leading-relaxed">
+      Casa Cactus ist ideal für Paare oder Alleinreisende, die Sagres in ruhiger Umgebung erleben
+      möchten.
+    </p>
     
     <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
       <!-- Suitable for -->

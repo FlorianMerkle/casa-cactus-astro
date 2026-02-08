@@ -15,7 +15,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
   name: "Casa Cactus - Ferienwohnung Sagres",
-  description: "Moderne Ferienwohnung für 2 Personen in Sagres mit Terrasse, Gemeinschaftspool und Strandnähe.",
+  description: "Moderne Ferienwohnung in Sagres mit Terrasse, Poolzugang und kurzer Distanz zu den Stränden. Ideal für Paare.",
   url: siteURL.toString(),
   image: ogImageURL.toString(),
   sameAs: [instagramURL],
@@ -48,7 +48,8 @@ const cloudflareBeacon = cloudflareToken ? JSON.stringify({ token: cloudflareTok
     <meta name="description" content={description} />
     <meta name="author" content="Casa Cactus Sagres" />
     <meta name="robots" content="index, follow" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/casa-cactus-logo-icon.png" />
+    <link rel="apple-touch-icon" href="/casa-cactus-logo-icon.png" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="preconnect" href="https://www.google.com" />
     <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />

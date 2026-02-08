@@ -1,32 +1,33 @@
 ---
 import { Picture } from "astro:assets";
-import interiorImage from "../assets/apartment-interior.jpeg";
-import livingRoomImage from "../assets/apartment-living-room.jpg";
-import kitchenImage from "../assets/apartment-kitchen.jpg";
-import poolTerraceImage from "../assets/apartment-pool-terrace.jpg";
-import bedroomImage from "../assets/schlafzimmer.jpg";
+import livingRoomImage from "../assets/casa-cactus-sagres-wohnzimmer.jpg";
+import kitchenImage from "../assets/casa-cactus-sagres-kueche.jpg";
+import poolTerraceImage from "../assets/casa-cactus-sagres-pool-terrasse.jpg";
+import bathroomImage from "../assets/casa-cactus-sagres-badezimmer.jpg";
+import bedroomImage from "../assets/casa-cactus-sagres-schlafzimmer.jpg";
 
 const features = [
-  { icon: "bed", text: "1 Schlafzimmer mit Doppelbett" },
-  { icon: "bath", text: "1 Badezimmer mit Badewanne" },
-  { icon: "utensils", text: "Offene Küche mit kompletter Ausstattung" },
-  { icon: "tv", text: "Wohnbereich mit Smart-TV und WLAN" },
-  { icon: "sun", text: "Private Terrasse mit Grill" },
-  { icon: "waves", text: "Direkter Zugang zum Gemeinschaftspool" },
-  { icon: "wind", text: "Klimaanlage in allen Räumen" },
-  { icon: "car", text: "Parkplatz in unmittelbarer Nähe" },
+  { icon: "home", text: "Erdgeschosswohnung (ca. 58 m²)" },
+  { icon: "bed", text: "Schlafzimmer mit Doppelbett" },
+  { icon: "bath", text: "Badezimmer mit Badewanne" },
+  { icon: "utensils", text: "Offene Küche mit vollständiger Ausstattung" },
+  { icon: "tv", text: "WLAN & Smart-TV" },
+  { icon: "wind", text: "Klimaanlage" },
+  { icon: "sun", text: "Private Terrasse mit BBQ" },
+  { icon: "waves", text: "Gemeinschaftspool" },
 ];
 
 const slides = [
-  { src: interiorImage, alt: "Schlafzimmer der Ferienwohnung Casa Cactus in Sagres" },
+  { src: livingRoomImage, alt: "Wohnzimmer der Ferienwohnung Casa Cactus in Sagres" },
   { src: bedroomImage, alt: "Schlafzimmer mit Doppelbett in der Ferienwohnung Casa Cactus" },
-  { src: livingRoomImage, alt: "Wohnzimmer mit Zugang zur Terrasse" },
-  { src: kitchenImage, alt: "Voll ausgestattete Küche" },
-  { src: poolTerraceImage, alt: "Terrasse mit Blick auf den Gemeinschaftspool" },
+  { src: bathroomImage, alt: "Badezimmer mit Badewanne in der Ferienwohnung Casa Cactus" },
+  { src: kitchenImage, alt: "Voll ausgestattete Küche in der Ferienwohnung Casa Cactus" },
+  { src: poolTerraceImage, alt: "Private Terrasse mit Zugang zum Gemeinschaftspool" },
 ];
 
 // Simple SVG icons
 const icons: Record<string, string> = {
+  home: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>`,
   bed: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>`,
   bath: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" x2="8" y1="5" y2="7"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>`,
   utensils: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>`,
@@ -41,13 +42,19 @@ const icons: Record<string, string> = {
 <section class="py-16 md:py-24 bg-background">
   <div class="container mx-auto px-4">
     <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-6">
-      Die Ferienwohnung Casa Cactus im Überblick
+      Die Ferienwohnung
     </h2>
     
     <p class="text-muted-foreground text-lg text-center max-w-3xl mx-auto mb-12">
-      Die ebenerdige Ferienwohnung bietet rund 58 m² Wohnfläche und ist Teil einer kleinen, 
-      gepflegten Wohnanlage mit insgesamt wenigen Einheiten. Die Anlage ist ruhig, nicht 
-      touristisch überlaufen und ideal für Gäste, die Sagres entspannt erleben möchten.
+      Die etwa 58 m² große Ferienwohnung befindet sich im Erdgeschoss und ist modern sowie
+      funktional eingerichtet. Sie verfügt über ein separates Schlafzimmer mit Doppelbett, ein
+      Badezimmer mit Badewanne sowie einen offenen Wohn- und Essbereich mit voll ausgestatteter
+      Küche.
+    </p>
+
+    <p class="text-muted-foreground text-lg text-center max-w-3xl mx-auto mb-12 -mt-6">
+      Der Wohnbereich bietet Zugang zur privaten Terrasse mit Grillmöglichkeit und direktem Weg
+      zum Gemeinschaftspool – ideal für entspannte Tage im Freien.
     </p>
     
     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
